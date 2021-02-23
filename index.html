@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Teste</title>
+  </head>
+  <body>
+    <h1>To Upper</h1>
+    <input id="word" type="text" />
+    <button id="btnSubmit">Submit</button>
+
+    <h2>Upper:</h2>
+    <input id="wordUpper" type="text" disabled />
+
+    <script type="text/javascript">
+      const button = document.querySelector("#btnSubmit");
+      const wordInput = document.querySelector("#word");
+      const wordUpperInput = document.querySelector("#wordUpper");
+
+      button.addEventListener("click", function () {
+        const value = wordInput.value;
+        fetch(`./teste.php?word=${value}`)
+          .then(response => response.json())
+          .then(response => {
+            console.log(response);
+            wordUpperInput.value = response.value;
+          });
+      });
+    </script>
+  </body>
+</html>
